@@ -2,45 +2,48 @@ version: '3'
 
 services:
   # Database
-  mariadb:
-    image: mariadb:latest
+  db:
+    image: mysql:latest
     volumes:
-      - 'mariadb_data:/var/lib/mysql'
+      - db_data:/var/lib/mysql
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: password
-      MARIADB_USER: wordpress
-      MARIADB_DATABASE: wordpress
-      MARIADB_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - wpsite
+  # phpmyadmin
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8080:80'
+      - '443:8443'
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: password
     networks:
       - wpsite
   # Wordpress
   wordpress:
     depends_on:
-      - mariadb
-    image: docker.io/bitnami/wordpress-nginx:latest
+      - db
+    image: wordpress:latest
     ports:
-      - '80:8080'
-      - '443:8443'
-    volumes:
-      - 'wordpress_data:/bitnami/wordpress'
+      - '8000:80'
+    restart: always
+    volumes: [ './:/var/www/html' ]
     environment:
-      # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      WORDPRESS_USERNAME: user
-      WORDPRESS_PASSWORD: pass
-      WORDPRESS_EMAIL: hi@hi.com
-      WORDPRESS_FIRST_NAME: Hans
-      WORDPRESS_LAST_NAME: W
-      WORDPRESS_BLOG_NAME: skaleio wpsite
-      WORDPRESS_DATABASE_HOST: mariadb
-      WORDPRESS_DATABASE_PORT_NUMBER: 3306
-      WORDPRESS_DATABASE_USER: wordpress
-      WORDPRESS_DATABASE_NAME: wordpress
-      WORDPRESS_DATABASE_PASSWORD: wordpress
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
     networks:
       - wpsite
 networks:
   wpsite: null
 volumes:
-  mariadb_data: null
-  wordpress_data: null
+  db_data: null
