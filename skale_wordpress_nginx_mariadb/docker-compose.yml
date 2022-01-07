@@ -23,7 +23,8 @@ services:
       - '80:8080'
       - '443:8443'
     volumes:
-      - 'wordpress_data:/bitnami/wordpress'
+      - './wordpress_data:/bitnami/wordpress'
+#      - 'wordpress_data:/bitnami/wordpress'
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       WORDPRESS_USERNAME: user
@@ -43,4 +44,5 @@ networks:
   wpsite: null
 volumes:
   mariadb_data: null
-  wordpress_data: null
+  wordpress_data:
+    driver : local
