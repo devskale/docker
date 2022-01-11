@@ -1,14 +1,14 @@
 # docker related files
 
-install docker on
+1. install docker on
 rpi: curl -fsSL https://get.docker.com | sh
-The syntax for adding users to the Docker group is:
+2. The syntax for adding users to the Docker group is:
 sudo usermod -aG docker [user_name]
-To add the permissions to the current user run:
+3. To add the permissions to the current user run:
 sudo usermod -aG docker ${USER}
-Check it running:
+4. Check it running:
 groups ${USER}
-Reboot the Raspberry Pi to let the changes take effect.
+5. Reboot the Raspberry Pi to let the changes take effect.
 Enable the Docker system service to start your containers on boot
 This is a very nice and important addition. With the following command you can configure your Raspberry Pi to automatically run the Docker system service, whenever it boots up.
 sudo systemctl enable docker
