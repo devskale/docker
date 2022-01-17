@@ -18,7 +18,7 @@ case ${answer:0:1} in
         docker volume prune -f
         echo "INFO: Pruning unused docker networks"
         docker network prune -f
-        echo "INFO: Removing directories and contents (certs/ certs-data/ logs/nginx/ mysql/ wordpress/)"
+        echo "INFO: Removing directories and contents (wordpress/)"
         rm -rf wp-* wordpress\
         echo "INFO: Done"
         exit 0;
