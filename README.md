@@ -1,22 +1,23 @@
 # docker 
 
 docker compose files for raspberry pi zero w 2
-archiecture armv7
+the zerow2 is a great device with an hardware archiecture arm/v7
 
-lemp wordpress
-ghost cms
+* lemp wordpress
+* ghost cms
 
 
 # docker related files
 
-1. install docker on
-rpi: curl -fsSL https://get.docker.com | sh
+1. install docker on rpi:
+``` curl -fsSL https://get.docker.com | sh```
+
 2. The syntax for adding users to the Docker group is:
-sudo usermod -aG docker [user_name]
+```sudo usermod -aG docker [user_name]```
 3. To add the permissions to the current user run:
-sudo usermod -aG docker ${USER}
+```sudo usermod -aG docker ${USER}```
 4. Check it running:
-groups ${USER}
+```groups ${USER}```
 5. Reboot the Raspberry Pi to let the changes take effect.
 Enable the Docker system service to start your containers on boot
 This is a very nice and important addition. With the following command you can configure your Raspberry Pi to automatically run the Docker system service, whenever it boots up.
