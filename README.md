@@ -1,3 +1,12 @@
+# docker 
+
+docker compose files for raspberry pi zero w 2
+archiecture armv7
+
+lemp wordpress
+ghost cms
+
+
 # docker related files
 
 1. install docker on
