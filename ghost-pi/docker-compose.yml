@@ -16,7 +16,7 @@ services:
       database__connection__password: ghostdbpass
       database__connection__database: ghostdb
     volumes:
-      - /home/ghost/content:/var/lib/ghost/content
+      - ./content:/var/lib/ghost/content
 
   db:
     image: linuxserver/mariadb:latest
@@ -27,5 +27,6 @@ services:
       MYSQL_PASSWORD: ghostdbpass
       MYSQL_DATABASE: ghostdb
     volumes:
-      - /home/ghost/mysql:/var/lib/mysql
-
+      - ./mariadb:/config
+    ports:
+      - 3306:3306
