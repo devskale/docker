@@ -1,0 +1,32 @@
+version: "3.3"
+# docker for linux and raspberry pi zero w 2
+services:
+  ghost:
+    image: ghost:${GHOST_VERSION}
+    restart: always
+    ports:
+      - "${PORT}:2368"
+    depends_on:
+      - db
+    environment:
+      url: ${URL}:${PORT}
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: ${MARIADB_USER}
+      database__connection__password: ${MARIADB_PASS}
+      database__connection__database: ${MARIADB_DB}
+    volumes:
+      - ./content:/var/lib/ghost/content
+
+  db:
+    image: ${MARIADB_PREFIX}mariadb:${MARIADB_VERSION}
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+      MYSQL_USER: ${MARIADB_USER}
+      MYSQL_PASSWORD: ${MARIADB_PASS}
+      MYSQL_DATABASE: ${MARIADB_DB}
+    volumes:
+      - ./mariadb:/config
+    ports:
+      - 3306:3306
