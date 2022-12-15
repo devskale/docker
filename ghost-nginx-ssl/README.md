@@ -28,3 +28,10 @@ change example.com with your custom domain name in files:
 docker-compose.yml and 
 ./nginx/ghost.conf
 
+## Run Ghost Docker
+
+```console
+docker-compose up -d
+
+```
+your ghost site is available under https://YOURDOMAIN
