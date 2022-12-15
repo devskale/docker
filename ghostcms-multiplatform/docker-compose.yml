@@ -6,6 +6,8 @@ services:
     restart: always
     ports:
       - "${PORT}:2368"
+      - "80:2368"
+      - "443:2368"
     depends_on:
       - db
     environment:

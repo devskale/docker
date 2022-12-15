@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-content
+docker-compose images
 
 # Stop running containers and remove related directories
 read -p "Do you really want to stop and remove EVERYTHING (y/n)? " answer
@@ -23,5 +23,8 @@ case ${answer:0:1} in
         exit 0;
     ;;
 esac
+
+docker-compose images
+docker ps
 
 exit 0;
