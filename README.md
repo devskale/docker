@@ -3,8 +3,12 @@
 docker compose files for raspberry pi zero w 2
 the zerow2 is a great device with an hardware archiecture arm/v7
 
-* lemp wordpress
-* ghost cms
+update docker images
+```
+docker-compose pull
+docker-compose up -d --remove-orphans
+docker image prune -a
+```
 
 
 # docker related files
