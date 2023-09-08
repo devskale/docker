@@ -5,7 +5,7 @@ services:
     image: ghost:${GHOST_VERSION}
     restart: always
     ports:
-      - "${PORT}:2368"
+      - "2368:2368"
       - "80:2368"
       - "443:2368"
     depends_on:
@@ -27,7 +27,8 @@ services:
       - ./content:/var/lib/ghost/content
 #      - ./config.json:/var/lib/ghost/config.production.json
   db:
-    image: ${MARIADB_PREFIX}mariadb:${MARIADB_VERSION}
+    image: ${MARIADB_PREFIX}mariadb-alpine:${MARIADB_VERSION}
+#    image: ${MARIADB_PREFIX}mariadb-alpine:${MARIADB_VERSION}
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: your_mysql_root_password
